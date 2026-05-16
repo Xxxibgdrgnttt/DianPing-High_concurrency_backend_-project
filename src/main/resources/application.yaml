@@ -1,0 +1,32 @@
+# 后端端口 8081（核心！必须加）
+server:
+  port: 8081
+
+spring:
+  datasource:
+    # ✅ 1. 改成 MySQL8.0 新版驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # ✅ 2. URL 添加 allowPublicKeyRetrieval=true 解决公钥报错
+    url: jdbc:mysql://localhost:3306/hmdp?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 330383765nbnb
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s
+  jackson:
+    default-property-inclusion: non_null
+
+mybatis-plus:
+  type-aliases-package: com.hmdp.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    com.hmdp: debug
